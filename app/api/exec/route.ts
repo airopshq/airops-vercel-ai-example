@@ -2,13 +2,31 @@ import {
   StreamingTextResponse,
   AIStream,
   createStreamDataTransformer,
+  type AIStreamCallbacksAndOptions,
 } from 'ai';
 
-const AiropsStream = (res: any, cb?: any) => {
+interface Delta {
+  // Streamed output
+  output: string;
+}
+
+interface ExecutionChunk {
+  /**
+   * The type of object being streamed.
+   */
+  object: string;
+
+  /**
+   * The delta of the streamed object which contains the delta output.
+   */
+  delta: Delta;
+}
+
+function AiropsStream (res: Response, cb?: AIStreamCallbacksAndOptions): ReadableStream {
   const stream = AIStream(
     res,
-    (data: any) => {
-      const json = JSON.parse(data);
+    (data: string) => {
+      const json: ExecutionChunk = JSON.parse(data);
 
       if (json.object === 'app.output.chunk' && json?.delta?.output !== undefined) {
         return json.delta.output;
