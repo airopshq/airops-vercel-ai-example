@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   // The ID of the app to execute
-  const APP_ID = '34c88c16-3230-416f-b568-abcf2ec355bb';
+  const APP_ID = process.env.AIROPS_WORKFLOW_APP_ID;
 
   // Call the AIROPS API
   const response = await fetch(`https://app.airops.com/public_api/airops_apps/${APP_ID}/server_execute`, {

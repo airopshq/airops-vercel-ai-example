@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const { messages, session_id } = await req.json();
 
   // The ID of the app to execute
-  const APP_ID = '8f2ec2bc-7423-4207-b1e5-b4689494e3a5';
+  const APP_ID = process.env.AIROPS_AGENT_APP_ID;
 
   // Call the AIROPS API
   const response = await fetch(`https://app.airops.com/public_api/agent_apps/${APP_ID}/server_chat`, {
