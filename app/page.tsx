@@ -7,26 +7,12 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      <h4 className="text-xl font-bold text-gray-900 md:text-xl pb-4">
-        Example
+      <h4 className="text-xl font-bold text-gray-900 md:text-xl pb-4 underline">
+        <a href='/execute'>Go to: Workflow Example</a>
       </h4>
-      {error && (
-        <div className="fixed top-0 left-0 w-full p-4 text-center bg-red-500 text-white">
-          {error.message}
-        </div>
-      )}
-      <div className="whitespace-pre-wrap">
-        {completion}
-      </div>
-      <form onSubmit={isLoading ? () => {} : handleSubmit}>
-        <input
-          disabled={isLoading}
-          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
-          value={isLoading ? 'Loading...' : input}
-          placeholder="Enter a topic..."
-          onChange={handleInputChange}
-        />
-      </form>
+      <h4 className="text-xl font-bold text-gray-900 md:text-xl pb-4 underline">
+        <a href='/chat'>Go to: Agent Example</a>
+      </h4>
     </div>
   );
 }
